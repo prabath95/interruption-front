@@ -1,0 +1,73 @@
+<div class="padding">
+    <mat-card class="example-card">
+        <mat-card-title>Interruption Schedules</mat-card-title>
+        <mat-card-subtitle> Registered Interruption Schedule list</mat-card-subtitle>
+        <mat-card-content>
+            <mat-grid-list cols="4" rowHeight="1.5:0.4">
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Search Schedule</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Search Text" #input>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="scheduleId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Schedule ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.interruptionId}} </td>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="interruptionStart">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Interruption From </th>
+                    <td mat-cell *matCellDef="let row"> {{row.startDateTime | date: 'dd/MM/yyyy hh:mm a' }} </td>
+                </ng-container>
+                <ng-container matColumnDef="interruptionEnd">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Interruption To </th>
+                    <td mat-cell *matCellDef="let row"> {{row.endDateTime | date: 'dd/MM/yyyy hh:mm a' }} </td>
+                </ng-container>
+                <ng-container matColumnDef="createdDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </th>
+                    <td mat-cell *matCellDef="let row"> {{row.createdDate | date: 'dd/MM/yyyy hh:mm a' }} </td>
+                </ng-container>
+                <ng-container matColumnDef="createdUser">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created User </th>
+                    <td mat-cell *matCellDef="let row"> {{row.createdUser}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions" [appHasPermissions]="'ADMIN'">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header [align]="'end'" class="align-right"
+                        [appHasPermissions]="'ADMIN'">
+                        <button mat-stroked-button color="primary" (click)="createSchedule()">
+                            <mat-icon>add</mat-icon> Insert
+                        </button>
+                    </th>
+                    <td mat-cell *matCellDef="let row" class="align-right" [appHasPermissions]="'ADMIN'">
+                        <button mat-mini-fab color="primary" (click)="updateSchedule(row)">
+                            <mat-icon>edit</mat-icon>
+                        </button>&nbsp;
+                        <button mat-mini-fab color="warn" (click)="deleteSchedule(row)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="7" [align]="'center'">No data found.</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[ 10, 25, 100]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

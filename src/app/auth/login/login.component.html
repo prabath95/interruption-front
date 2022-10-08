@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="loginForm">
+            <h2>Login</h2>
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="userName" name="username" required>
+                <div *ngIf="validateField('userName')">
+                    <mat-error *ngIf="form['userName']?.errors?.['required']">
+                        Email address is required.
+                    </mat-error>
+                    <mat-error *ngIf="form['userName']?.errors?.['email']">
+                        Please provide a valid email address.
+                    </mat-error>
+                </div>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" formControlName="password" placeholder="Password" name="password"
+                    required>
+                <div *ngIf="validateField('password')">
+                    <mat-error *ngIf="form['password']?.errors?.['required']">
+                        Password is required.
+                    </mat-error>
+                </div>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="button" (click)="submit()">Login</button>
+        </form>
+    </mat-card-content>
+</mat-card>

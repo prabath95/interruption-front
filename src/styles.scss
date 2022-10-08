@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.swal2-show {
+  width: 390px !important;
+  padding: 8px !important;
+  background: rgb(249, 251, 255);
+  border: 5px solid #e0e0e0 !important;
+  min-height: 200px !important;
+}
+
+.swal2-modal .swal2-title {
+  color: #505050 !important;
+  font-size: 17px !important;
+  margin: 0 0 0.2em !important;
+}
+
+.swal2-modal .swal2-styled {
+  font-size: 13px !important;
+  margin: 1px 4px 0 !important;
+  padding: 4px 35px !important;
+}
+
+.swal2-icon {
+  border: 2px solid rgba(181, 181, 181, 0.39) !important;
+  margin: -1px auto -14px !important;
+}
+
+.swal2-modal .swal2-content {
+  font-size: 13px !important;
+  color: #7b7b7b !important;
+}
+
+.swal2-modal.customize-alert .swal2-title {
+  padding: 10px;
+}
+
+.swal2-modal.customize-alert .swal2-confirm,
+.swal2-modal.customize-alert .swal2-cancel {
+  padding: 10px 20px !important;
+}
+
+.swal2-modal.customize-alert .swal2-cancel {
+  color: #fff;
+  background-color: #f86c6b !important;
+  border-color: #f86c6b;
+}
+
+.swal2-html-container {
+  margin: 0px !important;
+  font-size: 0.9em !important;
+}

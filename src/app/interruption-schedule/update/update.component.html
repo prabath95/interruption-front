@@ -1,0 +1,51 @@
+<div class="padding">
+    <mat-card>
+        <mat-card-title>Update Interruption Schedule</mat-card-title>
+        <mat-card-subtitle>Modify interruption schedule details</mat-card-subtitle>
+        <mat-card-content>
+            <form [formGroup]="scheduleForm">
+                <mat-grid-list cols="3" rowHeight="1.5:0.3">
+                    <mat-grid-tile>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Description</mat-label>
+                            <input matInput placeholder="Description" formControlName="description" required>
+                            <div *ngIf="validateField('description')">
+                                <mat-error *ngIf="form['description']?.errors?.['required']">
+                                    Description is required.
+                                </mat-error>
+                            </div>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Interruption Start</mat-label>
+                            <input matInput type="datetime-local" [min]="startDateMin" placeholder="Interruption Start"
+                                (change)="onStartDateTimeChange()" formControlName="startDateTime">
+                            <div *ngIf="validateField('startDateTime')">
+                                <mat-error *ngIf="form['startDateTime']?.errors?.['required']">
+                                    Interruption start sate time is required.
+                                </mat-error>
+                            </div>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Interruption End </mat-label>
+                            <input matInput type="datetime-local" placeholder="Interruption End" [min]="endDateMin"
+                                formControlName="endDateTime">
+                            <div *ngIf="validateField('endDateTime')">
+                                <mat-error *ngIf="form['endDateTime']?.errors?.['required']">
+                                    Interruption end sate time is required.
+                                </mat-error>
+                            </div>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+            <button mat-raised-button color="primary" (click)="updateSchedule()">Submit</button>
+            <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
